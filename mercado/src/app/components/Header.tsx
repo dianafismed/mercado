@@ -7,11 +7,11 @@ import Image from "next/image";
 
 export function Header() {
   return (
-    <header className="w-full bg-amber-300 shadow-md p-4 flex justify-between items-center">
+    <div className="w-full px-4 pt-6 flex justify-between items-center">
       {/*Logo */}
       <Link href="/" className="text-2xl font-bold text-yellow-500">
         <Image
-          src='/img/logo.png' alt='Logo do Mercado'
+          src='/img/logo.png' alt='Logo do Mercado' width={180} height={180}
         />
       </Link>
 
@@ -20,12 +20,17 @@ export function Header() {
         <input
           type="text"
           placeholder="Search..."
-          className="p-2 border rounded"
+          className="w-full px-4 p-2 bg-white text-black"
         />
-        <button className="p-2 bg-blue-500 text-white rounded">
+        <button className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py- ">
           <Search size={20} />
         </button>
       </div>
-    </header>
+
+      {/*Sign Button*/}
+      <button className="bg-yellow-500 text-white px-4 py-2 rounded-full">
+        Assine++
+      </button>
+    </div>
   );
 }

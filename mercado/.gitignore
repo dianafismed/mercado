@@ -16,9 +16,12 @@
 # next.js
 /.next/
 /out/
+.next/cache
+*.next
 
 # production
 /build
+dist/
 
 # misc
 .DS_Store
@@ -32,9 +35,16 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env.local
+.env.*.local
+.env
 
 # vercel
 .vercel
+
+# Logs
+logs/
+*.log
 
 # typescript
 *.tsbuildinfo

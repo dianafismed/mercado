@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from "react";
+
 type Product = {
   id: number;
   title: string;
@@ -8,56 +10,26 @@ type Product = {
   location: string;
 };
 
-const products: Product[] = [
-  {
-    id: 1,
-    title: "Produto 1",
-    price: 29.99,
-    image: "https://via.placeholder.com/150",
-    location: "Localização 1",
-  },
-  {
-    id: 2,
-    title: "Produto 2",
-    price: 49.99,
-    image: "https://via.placeholder.com/150",
-    location: "Localização 2",
-  },
-  {
-    id: 3,
-    title: "Produto 3",
-    price: 19.99,
-    image: "https://via.placeholder.com/150",
-    location: "Localização 3",
-  },
-  {
-    id: 4,
-    title: "Produto 4",
-    price: 39.99,
-    image: "https://via.placeholder.com/150",
-    location: "Localização 4",
-  },
-  {
-    id: 5,
-    title: "Produto 5",
-    price: 24.99,
-    image: "https://via.placeholder.com/150",
-    location: "Localização 5",
-  },
-  {
-    id: 6,
-    title: "Produto 6",
-    price: 59.99,
-    image: "https://via.placeholder.com/150",
-    location: "Localização 6",
-  },
-];
-
 export function ProductGrid() {
+  
+  const [data, setData] = useState<Product[] | null>(null);
+
+  useEffect(() => {
+    fetch('/api')
+    .then((response) => response.json())
+    .then((data) => {
+      setData(data);
+    })
+    .catch((error) => {
+      console.error('Error fetching products:', error);
+    });
+  }, []);
+
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {Array.isArray(data) && data.length > 0 &&
+        data.map((product) => (
           <div
             key={product.id}
             className="bg-white rounded-xl shadow hover:shadow-md transition overflow-hidden p-4 flex flex-col"

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import Image from 'next/image';
 
 type Product = {
   id: number;
@@ -37,14 +38,15 @@ export function ProductGrid() {
             <img
               src={product.image}
               alt={product.title}
+              width={395}
+              height={395}
               className="w-full h-48 object-cover"
             />
             <div className="p-2">
               <h3 className="text-base font-medium text-gray-800 mb-1">{product.title}</h3>
-              <p className="text-lg font-bold text-black mb-1">${product.price.toFixed(2)}</p>
+              <p className="text-lg font-bold text-black mb-1">${product.price}</p>
               <p className="text-sm text-gray-500">{product.location}</p>
             </div>
-
           </div>
         ))}
       </div>

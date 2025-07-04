@@ -1,13 +1,11 @@
-interface Product {
-  id: number
-  title: string
-  price: number
-  image: string
-  location: string
-};
+import { PrismaClient } from "../../../generated/prisma"
 
-export function GET() {
-  const products: Product[] = [];
+export async function GET() {
+
+  const prisma = new PrismaClient();
+  const products = await prisma.product.findMany()
+
   return Response.json(products); 
+
   }
 
